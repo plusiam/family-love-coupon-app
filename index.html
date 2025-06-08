@@ -34,15 +34,15 @@
             <form id="activity-form" class="bg-white rounded-2xl shadow-lg p-6 space-y-8">
                 <section><h2 class="text-xl font-bold text-rose-600 mb-3">학생 정보</h2><div class="grid grid-cols-1 sm:grid-cols-3 gap-4"><div class="sm:col-span-1"><label for="school-input" class="text-sm font-semibold">학교</label><input type="text" id="school-input" class="w-full p-2 border rounded-md mt-1" placeholder="예: 행복초"></div><div class="sm:col-span-1"><label for="class-grade-input" class="text-sm font-semibold">학반</label><input type="text" id="class-grade-input" class="w-full p-2 border rounded-md mt-1" placeholder="예: 6학년 1반"></div><div class="sm:col-span-1"><label for="name-input" class="text-sm font-semibold">이름</label><input type="text" id="name-input" class="w-full p-2 border rounded-md mt-1" placeholder="예: 홍길동"></div></div></section>
                 <section><h2 class="text-xl font-bold text-rose-600 mb-3">🟡 생각 나누기</h2><p class="font-semibold text-stone-700 mb-2">Q. '효도'하면 어떤 모습이 떠오르나요? (여러 개 선택 가능)</p><div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm"><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="집안일 돕기" class="mr-2">집안일 돕기</label><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="말 예쁘게 하기" class="mr-2">말 예쁘게 하기</label><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="함께 시간 보내기" class="mr-2">함께 시간 보내기</label><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="편지 쓰기" class="mr-2">편지 쓰기</label><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="안마 해드리기" class="mr-2">안마 해드리기</label><label class="p-2 border rounded-md has-[:checked]:bg-rose-100"><input type="checkbox" name="thought" value="내 할 일 스스로" class="mr-2">내 할 일 스스로</label></div></section>
-                <section><h2 class="text-xl font-bold text-rose-600 mb-3">🔵 내가 실천한 효도 인증하기</h2><label class="font-semibold text-stone-700 block mb-2">"최근에 내가 실천했던 효도 내용을 바탕으로 '실천 완료 인증서'를 만들어보세요!"</label><input type="text" id="coupon-title" class="w-full p-2 border rounded-md" placeholder="예: 설거지 도와드리기 (실천 완료!)"><div class="mt-4"><p class="font-semibold text-stone-700 mb-2">인증서에 어울리는 사진을 넣어보세요.</p><div class="flex gap-4"><button type="button" id="open-camera-btn" class="flex-1 py-2 bg-rose-500 text-white font-bold rounded-lg">📸 카메라로 찍기</button><label class="flex-1 py-2 bg-amber-500 text-white font-bold rounded-lg text-center cursor-pointer">📂 파일에서 선택<input type="file" id="image-upload" class="hidden" accept="image/*"></label></div></div></section>
-                <section><h2 class="text-xl font-bold text-rose-600 mb-3">🔴 '효도 일기' 쓰기</h2><p class="font-semibold text-stone-700 mb-2">"효도를 실천한 뒤, 어떤 느낌이 들었는지 기록해 보세요."</p><input type="date" id="diary-date" class="w-full p-2 border rounded-md mb-2"><textarea id="diary-text" rows="3" class="w-full p-2 border rounded-md" placeholder="나의 생각이나 가족의 반응을 적어봐요."></textarea><fieldset class="mt-2"><legend class="font-semibold text-sm mb-1">오늘 나, 효도왕? 👑</legend><div class="flex gap-4"><label><input type="radio" name="king" value="◎"> ◎</label><label><input type="radio" name="king" value="○"> ○</label><label><input type="radio" name="king" value="△"> △</label></div></fieldset></section>
+                <section><h2 class="text-xl font-bold text-rose-600 mb-3">🔵 내가 실천한 효도 인증하기</h2><label class="font-semibold text-stone-700 block mb-2">"최근에 내가 실천했던 효도 내용을 바탕으로 '실천 완료 인증서'를 만들어보세요!"</label><div id="coupon-items-container"><div class="coupon-item mb-3 p-3 border border-dashed border-rose-200 rounded-lg"><div class="flex gap-2 items-center mb-2"><input type="text" class="coupon-input flex-1 p-2 border rounded-md" placeholder="예: 설거지 도와드리기 (실천 완료!)"><button type="button" class="remove-coupon-btn hidden px-3 py-2 bg-red-500 text-white rounded-md text-sm">삭제</button></div></div></div><button type="button" id="add-coupon-btn" class="w-full py-2 bg-blue-500 text-white font-bold rounded-lg mb-4">➕ 효도 실천 내용 추가하기</button><div class="bg-blue-50 p-3 rounded-lg mb-4"><p class="text-sm text-blue-700">💡 <strong>사진 안내:</strong> 여러 개의 효도 실천 내용 중 가장 대표적인 1개의 사진만 올려주세요. 인증서에 함께 표시됩니다.</p></div><div class="mt-4"><p class="font-semibold text-stone-700 mb-2">대표 인증 사진을 넣어보세요.</p><div class="flex gap-4"><button type="button" id="open-camera-btn" class="flex-1 py-2 bg-rose-500 text-white font-bold rounded-lg">📸 카메라로 찍기</button><label class="flex-1 py-2 bg-amber-500 text-white font-bold rounded-lg text-center cursor-pointer">📂 파일에서 선택<input type="file" id="image-upload" class="hidden" accept="image/*"></label></div></div></section>
+                <section><h2 class="text-xl font-bold text-rose-600 mb-3">🔴 '효도 일기' 쓰기</h2><p class="font-semibold text-stone-700 mb-2">"효도를 실천한 뒤, 어떤 느낌이 들었는지 기록해 보세요."</p><input type="date" id="diary-date" class="w-full p-2 border rounded-md mb-2"><textarea id="diary-text" rows="3" class="w-full p-2 border rounded-md" placeholder="나의 생각이나 가족의 반응을 적어봐요."></textarea><fieldset class="mt-2"><legend class="font-semibold text-sm mb-1">오늘 나의 효도 점수는? ⭐</legend><div class="grid grid-cols-1 gap-2 text-sm"><label class="p-2 border rounded-md has-[:checked]:bg-green-100 cursor-pointer"><input type="radio" name="king" value="🌟🌟🌟 효도 대왕! (완벽해요!)" class="mr-2">🌟🌟🌟 효도 대왕! (완벽해요!)</label><label class="p-2 border rounded-md has-[:checked]:bg-yellow-100 cursor-pointer"><input type="radio" name="king" value="⭐⭐ 효도 왕자/공주 (잘했어요!)" class="mr-2">⭐⭐ 효도 왕자/공주 (잘했어요!)</label><label class="p-2 border rounded-md has-[:checked]:bg-blue-100 cursor-pointer"><input type="radio" name="king" value="⭐ 효도 새싹 (더 노력해봐요!)" class="mr-2">⭐ 효도 새싹 (더 노력해봐요!)</label></div></fieldset></section>
                 <section><h2 class="text-xl font-bold text-rose-600 mb-3">🟢 다짐하기</h2><label for="pledge-input" class="font-semibold text-stone-700 mb-2">오늘 나의 다짐을 직접 적어보세요.</label><textarea id="pledge-input" rows="2" class="w-full p-2 border rounded-md" placeholder="예: 앞으로도 부모님 말씀을 잘 듣겠습니다."></textarea></section>
             </form>
             
             <div id="capture-area" class="bg-white rounded-2xl shadow-lg p-6 space-y-6">
                 <div id="student-info-preview" class="text-right text-sm text-stone-500">정보 없음</div>
-                <div class="bg-gradient-to-br from-rose-100 to-amber-100 p-4 rounded-lg border-2 border-dashed border-rose-300 flex gap-4 items-center"><div id="coupon-image-preview" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-gray-400 text-xs overflow-hidden">인증샷</div><div class="flex flex-col justify-center"><h3 class="text-lg sm:text-xl font-bold text-rose-700">🏆 효도 실천 인증서 🏆</h3><p id="coupon-title-preview" class="mt-2 text-stone-600">인증할 내용을 입력하세요.</p><p class="text-xs text-stone-500 mt-auto">인증일: <span id="issue-date"></span></p></div></div>
-                <div class="bg-stone-50 p-4 rounded-lg"><h3 class="text-lg font-bold text-stone-700">💖 효도 일기</h3><p class="text-sm text-stone-500 mb-2" id="diary-date-preview">날짜를 선택하세요.</p><p class="text-stone-600 min-h-[4rem]" id="diary-text-preview">...</p><p class="text-right mt-2 font-bold" id="king-preview">효도왕: ?</p></div>
+                <div class="bg-gradient-to-br from-rose-100 to-amber-100 p-4 rounded-lg border-2 border-dashed border-rose-300"><div class="flex gap-4 items-start"><div id="coupon-image-preview" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-gray-400 text-xs overflow-hidden">인증샷</div><div class="flex flex-col justify-center flex-1"><h3 class="text-lg sm:text-xl font-bold text-rose-700">🏆 효도 실천 인증서 🏆</h3><div id="coupon-titles-preview" class="mt-2 text-stone-600 space-y-1"><p>인증할 내용을 입력하세요.</p></div><p class="text-xs text-stone-500 mt-2">인증일: <span id="issue-date"></span></p></div></div></div>
+                <div class="bg-stone-50 p-4 rounded-lg"><h3 class="text-lg font-bold text-stone-700">💖 효도 일기</h3><p class="text-sm text-stone-500 mb-2" id="diary-date-preview">날짜를 선택하세요.</p><p class="text-stone-600 min-h-[4rem]" id="diary-text-preview">...</p><p class="text-right mt-2 font-bold" id="king-preview">효도 점수: ?</p></div>
                 <div class="bg-green-50 p-4 rounded-lg text-center"><h3 class="text-lg font-bold text-green-800">✨ 오늘의 다짐 ✨</h3><p id="pledge-preview" class="text-green-700 mt-2 min-h-[1.5rem]">다짐을 입력해주세요.</p></div>
             </div>
         </main>
@@ -54,248 +54,462 @@
     </div>
 
     <script>
-    class ImageProcessor {
-        static resizeImage(file,maxWidth=800,maxHeight=600,quality=.8){return new Promise((resolve,reject)=>{const img=new Image;img.onload=()=>{const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");let{width:width,height:height}=img;width>height?width>maxWidth&&(height*=maxWidth/width,width=maxWidth):height>maxHeight&&(width*=maxHeight/height,height=maxHeight),canvas.width=width,canvas.height=height,ctx.imageSmoothingEnabled=!0,ctx.imageSmoothingQuality="high",ctx.drawImage(img,0,0,width,height),resolve(canvas.toDataURL("image/jpeg",quality))},img.onerror=reject,img.src=URL.createObjectURL(file)})}
-        static optimizeCameraImage(canvas,quality=.8){return canvas.toDataURL("image/jpeg",quality)}
-        static showProcessingMessage(){const div=document.createElement("div");div.id="image-processing",div.className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50",div.innerHTML='<div class="bg-white rounded-lg p-6 text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-rose-500 mx-auto mb-4"></div><p class="text-gray-700">사진을 처리하고 있어요...</p></div>',document.body.appendChild(div)}
-        static hideProcessingMessage(){var _a;(_a=document.getElementById("image-processing"))?.remove()}
-    }
-
-    class FilialPietyCouponApp {
-        constructor() {
-            this.stream = null;
-            this.elements = this.initializeElements();
-            this.bindEvents();
-            this.loadData();
-            setInterval(() => this.saveData(), 10000);
-        }
-
-        initializeElements() {
-            const elements = {};
-            const elementIds = [
-                'activity-form', 'school-input', 'class-grade-input', 'name-input', 'coupon-title', 
-                'image-upload', 'diary-date', 'diary-text', 'pledge-input', 'student-info-preview', 
-                'coupon-image-preview', 'coupon-title-preview', 'issue-date', 'diary-date-preview', 
-                'diary-text-preview', 'king-preview', 'pledge-preview', 'download-btn', 'reset-btn', 
-                'camera-modal', 'open-camera-btn', 'close-camera-btn', 'shutter-btn', 
-                'use-picture-btn', 'camera-feed', 'camera-canvas', 'camera-error'
-            ];
-            elementIds.forEach(id => {
-                const camelCaseId = id.replace(/-(\w)/g, (match, letter) => letter.toUpperCase());
-                elements[camelCaseId] = document.getElementById(id);
-            });
-            elements.kingRadios = document.querySelectorAll('input[name="king"]');
-            elements.thoughtCheckboxes = document.querySelectorAll('input[name="thought"]');
-            return elements;
-        }
-
-        bindEvents() {
-            const el = this.elements;
-            // Input events
-            el.schoolInput.addEventListener('input', () => this.updateAllPreviews());
-            el.classGradeInput.addEventListener('input', () => this.updateAllPreviews());
-            el.nameInput.addEventListener('input', () => this.updateAllPreviews());
-            el.couponTitle.addEventListener('input', () => this.updateAllPreviews());
-            el.diaryDate.addEventListener('input', () => this.updateAllPreviews());
-            el.diaryText.addEventListener('input', () => this.updateAllPreviews());
-            el.pledgeInput.addEventListener('input', () => this.updateAllPreviews());
-            el.kingRadios.forEach(radio => radio.addEventListener('change', () => this.updateAllPreviews()));
-            el.imageUpload.addEventListener('change', (e) => this.handleFileUpload(e));
-            
-            // Button events
-            el.openCameraBtn.addEventListener('click', () => this.openCamera());
-            el.closeCameraBtn.addEventListener('click', () => this.closeCamera());
-            el.shutterBtn.addEventListener('click', () => this.takePicture());
-            el.usePictureBtn.addEventListener('click', () => this.useCapturedPicture());
-            el.downloadBtn.addEventListener('click', () => this.downloadPDF());
-            el.resetBtn.addEventListener('click', () => this.resetForm());
-        }
-
-        updateAllPreviews() {
-            // Student Info
-            const school = this.elements.schoolInput.value || '';
-            const classGrade = this.elements.classGradeInput.value || '';
-            const name = this.elements.nameInput.value || '정보 없음';
-            this.elements.studentInfoPreview.textContent = `${school} ${classGrade} ${name}`.trim() || '정보 없음';
-
-            // Coupon
-            this.elements.couponTitlePreview.textContent = this.elements.couponTitle.value || '인증할 내용을 입력하세요.';
-            this.elements.issueDate.textContent = new Date().toLocaleDateString('ko-KR');
-
-            // Diary
-            this.elements.diaryDatePreview.textContent = this.elements.diaryDate.value ? new Date(this.elements.diaryDate.value).toLocaleDateString('ko-KR') : '날짜를 선택하세요.';
-            this.elements.diaryTextPreview.textContent = this.elements.diaryText.value || '...';
-            const selectedKing = document.querySelector('input[name="king"]:checked');
-            this.elements.kingPreview.textContent = `효도왕: ${selectedKing ? selectedKing.value : '?'}`;
-            
-            // Pledge
-            this.elements.pledgePreview.textContent = this.elements.pledgeInput.value || '다짐을 입력해주세요.';
-        }
-
-        setCouponImage(src) {
-            this.elements.couponImagePreview.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded-full">`;
-        }
-
-        async handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            ImageProcessor.showProcessingMessage();
-            try {
-                const optimizedImage = await ImageProcessor.resizeImage(file);
-                this.setCouponImage(optimizedImage);
-                this.showFeedback('사진이 성공적으로 추가되었어요! 📸');
-            } catch (error) {
-                console.error('Image processing error:', error);
-                this.showFeedback('사진 처리 중 문제가 발생했어요.', false);
-            } finally {
-                ImageProcessor.hideProcessingMessage();
-            }
-        }
-
-        async openCamera() {
-            this.elements.cameraError.classList.add('hidden');
-            try {
-                if (this.stream) { this.stream.getTracks().forEach(track => track.stop()); }
-                this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-                this.elements.cameraModal.classList.remove('hidden');
-                this.elements.cameraFeed.srcObject = this.stream;
-                this.elements.cameraFeed.style.display = 'block';
-                this.elements.cameraCanvas.style.display = 'none';
-                this.elements.usePictureBtn.classList.add('hidden');
-            } catch (err) {
-                console.error("Camera error:", err);
-                this.elements.cameraError.classList.remove('hidden');
-            }
-        }
+    // 문서 로드 완료 후 실행
+    document.addEventListener('DOMContentLoaded', function() {
         
-        takePicture() {
-            const canvas = this.elements.cameraCanvas;
-            const video = this.elements.cameraFeed;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-            this.elements.usePictureBtn.classList.remove('hidden');
-        }
-
-        useCapturedPicture() {
-            const optimizedImage = ImageProcessor.optimizeCameraImage(this.elements.cameraCanvas);
-            this.setCouponImage(optimizedImage);
-            this.closeCamera();
-            this.showFeedback('멋진 사진이 찍혔어요! 📸');
-        }
-        
-        closeCamera() {
-            if (this.stream) { this.stream.getTracks().forEach(track => track.stop()); }
-            this.elements.cameraModal.classList.add('hidden');
-        }
-
-        waitForImages() {
-            const images = document.querySelectorAll('#capture-area img');
-            const promises = Array.from(images).map(img => {
-                if (img.complete) return Promise.resolve();
-                return new Promise(resolve => {
-                    img.onload = resolve;
-                    img.onerror = resolve; // Continue even if an image fails to load
+        class ImageProcessor {
+            static resizeImage(file, maxWidth = 800, maxHeight = 600, quality = 0.8) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement("canvas");
+                        const ctx = canvas.getContext("2d");
+                        let { width, height } = img;
+                        
+                        if (width > height) {
+                            if (width > maxWidth) {
+                                height *= maxWidth / width;
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width *= maxHeight / height;
+                                height = maxHeight;
+                            }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = "high";
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL("image/jpeg", quality));
+                    };
+                    img.onerror = reject;
+                    img.src = URL.createObjectURL(file);
                 });
-            });
-            return Promise.all(promises);
-        }
-
-        async downloadPDF() {
-            this.showFeedback('PDF 생성 중... 잠시만 기다려주세요.', true);
-            try {
-                await this.waitForImages();
-                const canvas = await html2canvas(document.getElementById('capture-area'), { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                const imgData = canvas.toDataURL('image/jpeg', 0.9);
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('나의_효도인증서.pdf');
-                this.showFeedback('✅ PDF가 성공적으로 저장되었습니다!', true);
-            } catch (error) {
-                console.error('PDF creation error:', error);
-                this.showFeedback('⚠️ PDF 생성에 실패했습니다.', false);
             }
-        }
-
-        resetForm() {
-            if (confirm("정말로 모든 내용을 지우고 처음부터 다시 시작할까요?")) {
-                this.elements.activityForm.reset();
-                this.elements.couponImagePreview.innerHTML = '인증샷';
-                this.updateAllPreviews();
-                localStorage.removeItem('filialPietyAppData');
-                this.showFeedback('모든 내용이 초기화되었습니다.');
-            }
-        }
-
-        saveData() {
-            const thoughts = Array.from(this.elements.thoughtCheckboxes)
-                                .filter(cb => cb.checked)
-                                .map(cb => cb.value);
-            const kingValue = document.querySelector('input[name="king"]:checked')?.value || '';
-
-            const data = {
-                school: this.elements.schoolInput.value,
-                classGrade: this.elements.classGradeInput.value,
-                name: this.elements.nameInput.value,
-                couponTitle: this.elements.couponTitle.value,
-                diaryDate: this.elements.diaryDate.value,
-                diaryText: this.elements.diaryText.value,
-                pledge: this.elements.pledgeInput.value,
-                thoughts: thoughts,
-                king: kingValue,
-                // 이미지는 저장하지 않음 (보안 및 용량 문제)
-            };
-            localStorage.setItem('filialPietyAppData', JSON.stringify(data));
-        }
-
-        loadData() {
-            const data = JSON.parse(localStorage.getItem('filialPietyAppData'));
-            if (!data) {
-                this.updateAllPreviews();
-                return;
-            }
-            this.elements.schoolInput.value = data.school || '';
-            this.elements.classGradeInput.value = data.classGrade || '';
-            this.elements.nameInput.value = data.name || '';
-            this.elements.couponTitle.value = data.couponTitle || '';
-            this.elements.diaryDate.value = data.diaryDate || '';
-            this.elements.diaryText.value = data.diaryText || '';
-            this.elements.pledgeInput.value = data.pledge || '';
             
-            if(data.king) document.querySelector(`input[name="king"][value="${data.king}"]`).checked = true;
-
-            this.elements.thoughtCheckboxes.forEach(cb => {
-                if(data.thoughts?.includes(cb.value)) {
-                    cb.checked = true;
+            static optimizeCameraImage(canvas, quality = 0.8) {
+                return canvas.toDataURL("image/jpeg", quality);
+            }
+            
+            static showProcessingMessage() {
+                const div = document.createElement("div");
+                div.id = "image-processing";
+                div.className = "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+                div.innerHTML = '<div class="bg-white rounded-lg p-6 text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-rose-500 mx-auto mb-4"></div><p class="text-gray-700">사진을 처리하고 있어요...</p></div>';
+                document.body.appendChild(div);
+            }
+            
+            static hideProcessingMessage() {
+                const processingDiv = document.getElementById("image-processing");
+                if (processingDiv) {
+                    processingDiv.remove();
                 }
-            });
+            }
+        }
+
+        class FilialPietyCouponApp {
+            constructor() {
+                this.stream = null;
+                this.elements = this.initializeElements();
+                this.bindEvents();
+                this.loadData();
+                this.updateRemoveButtons(); // 초기 삭제 버튼 상태 설정
+                // 10초마다 자동 저장
+                setInterval(() => this.saveData(), 10000);
+            }
+
+            initializeElements() {
+                const elements = {};
+                const elementIds = [
+                    'activity-form', 'school-input', 'class-grade-input', 'name-input', 
+                    'image-upload', 'diary-date', 'diary-text', 'pledge-input', 'student-info-preview', 
+                    'coupon-image-preview', 'coupon-titles-preview', 'issue-date', 'diary-date-preview', 
+                    'diary-text-preview', 'king-preview', 'pledge-preview', 'download-btn', 'reset-btn', 
+                    'camera-modal', 'open-camera-btn', 'close-camera-btn', 'shutter-btn', 
+                    'use-picture-btn', 'camera-feed', 'camera-canvas', 'camera-error',
+                    'coupon-items-container', 'add-coupon-btn'
+                ];
+                
+                elementIds.forEach(id => {
+                    const camelCaseId = id.replace(/-(\w)/g, (match, letter) => letter.toUpperCase());
+                    elements[camelCaseId] = document.getElementById(id);
+                });
+                
+                elements.kingRadios = document.querySelectorAll('input[name="king"]');
+                elements.thoughtCheckboxes = document.querySelectorAll('input[name="thought"]');
+                return elements;
+            }
+
+            bindEvents() {
+                const el = this.elements;
+                
+                // Input events
+                el.schoolInput.addEventListener('input', () => this.updateAllPreviews());
+                el.classGradeInput.addEventListener('input', () => this.updateAllPreviews());
+                el.nameInput.addEventListener('input', () => this.updateAllPreviews());
+                el.diaryDate.addEventListener('input', () => this.updateAllPreviews());
+                el.diaryText.addEventListener('input', () => this.updateAllPreviews());
+                el.pledgeInput.addEventListener('input', () => this.updateAllPreviews());
+                el.kingRadios.forEach(radio => radio.addEventListener('change', () => this.updateAllPreviews()));
+                el.imageUpload.addEventListener('change', (e) => this.handleFileUpload(e));
+                
+                // 동적 쿠폰 입력 필드에 대한 이벤트 위임
+                el.couponItemsContainer.addEventListener('input', (e) => {
+                    if (e.target.classList.contains('coupon-input')) {
+                        this.updateAllPreviews();
+                    }
+                });
+                
+                el.couponItemsContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-coupon-btn')) {
+                        this.removeCouponItem(e.target.closest('.coupon-item'));
+                    }
+                });
+                
+                // Button events
+                el.addCouponBtn.addEventListener('click', () => this.addCouponItem());
+                el.openCameraBtn.addEventListener('click', () => this.openCamera());
+                el.closeCameraBtn.addEventListener('click', () => this.closeCamera());
+                el.shutterBtn.addEventListener('click', () => this.takePicture());
+                el.usePictureBtn.addEventListener('click', () => this.useCapturedPicture());
+                el.downloadBtn.addEventListener('click', () => this.downloadPDF());
+                el.resetBtn.addEventListener('click', () => this.resetForm());
+            }
+
+            addCouponItem() {
+                const container = this.elements.couponItemsContainer;
+                const itemCount = container.children.length;
+                
+                if (itemCount >= 5) {
+                    this.showFeedback('최대 5개까지만 추가할 수 있어요! 📝', false);
+                    return;
+                }
+                
+                const newItem = document.createElement('div');
+                newItem.className = 'coupon-item mb-3 p-3 border border-dashed border-rose-200 rounded-lg';
+                newItem.innerHTML = `
+                    <div class="flex gap-2 items-center mb-2">
+                        <input type="text" class="coupon-input flex-1 p-2 border rounded-md" placeholder="예: 부모님께 안마 해드리기 (실천 완료!)">
+                        <button type="button" class="remove-coupon-btn px-3 py-2 bg-red-500 text-white rounded-md text-sm">삭제</button>
+                    </div>
+                `;
+                
+                container.appendChild(newItem);
+                this.updateRemoveButtons();
+                this.updateAllPreviews();
+                
+                // 새로 추가된 입력 필드에 포커스
+                newItem.querySelector('.coupon-input').focus();
+                this.showFeedback('새로운 효도 실천 내용이 추가되었어요! ✨');
+            }
+
+            removeCouponItem(item) {
+                const container = this.elements.couponItemsContainer;
+                if (container.children.length <= 1) {
+                    this.showFeedback('최소 1개는 남겨두어야 해요! 📝', false);
+                    return;
+                }
+                
+                item.remove();
+                this.updateRemoveButtons();
+                this.updateAllPreviews();
+                this.showFeedback('항목이 삭제되었어요.');
+            }
+
+            updateRemoveButtons() {
+                const container = this.elements.couponItemsContainer;
+                const items = container.children;
+                
+                for (let i = 0; i < items.length; i++) {
+                    const removeBtn = items[i].querySelector('.remove-coupon-btn');
+                    if (items.length === 1) {
+                        removeBtn.classList.add('hidden');
+                    } else {
+                        removeBtn.classList.remove('hidden');
+                    }
+                }
+            }
+
+            getCouponTitles() {
+                const inputs = this.elements.couponItemsContainer.querySelectorAll('.coupon-input');
+                return Array.from(inputs).map(input => input.value.trim()).filter(value => value);
+            }
+
+            updateAllPreviews() {
+                // Student Info
+                const school = this.elements.schoolInput.value || '';
+                const classGrade = this.elements.classGradeInput.value || '';
+                const name = this.elements.nameInput.value || '정보 없음';
+                this.elements.studentInfoPreview.textContent = `${school} ${classGrade} ${name}`.trim() || '정보 없음';
+
+                // Coupon Titles
+                const couponTitles = this.getCouponTitles();
+                if (couponTitles.length === 0) {
+                    this.elements.couponTitlesPreview.innerHTML = '<p>인증할 내용을 입력하세요.</p>';
+                } else {
+                    this.elements.couponTitlesPreview.innerHTML = couponTitles
+                        .map((title, index) => `<p>• ${title}</p>`)
+                        .join('');
+                }
+                this.elements.issueDate.textContent = new Date().toLocaleDateString('ko-KR');
+
+                // Diary
+                this.elements.diaryDatePreview.textContent = this.elements.diaryDate.value ? 
+                    new Date(this.elements.diaryDate.value).toLocaleDateString('ko-KR') : '날짜를 선택하세요.';
+                this.elements.diaryTextPreview.textContent = this.elements.diaryText.value || '...';
+                const selectedKing = document.querySelector('input[name="king"]:checked');
+                this.elements.kingPreview.textContent = `효도 점수: ${selectedKing ? selectedKing.value : '?'}`;
+                
+                // Pledge
+                this.elements.pledgePreview.textContent = this.elements.pledgeInput.value || '다짐을 입력해주세요.';
+            }
+
+            setCouponImage(src) {
+                this.elements.couponImagePreview.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded-full">`;
+            }
+
+            async handleFileUpload(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                ImageProcessor.showProcessingMessage();
+                try {
+                    const optimizedImage = await ImageProcessor.resizeImage(file);
+                    this.setCouponImage(optimizedImage);
+                    this.showFeedback('사진이 성공적으로 추가되었어요! 📸');
+                } catch (error) {
+                    console.error('Image processing error:', error);
+                    this.showFeedback('사진 처리 중 문제가 발생했어요.', false);
+                } finally {
+                    ImageProcessor.hideProcessingMessage();
+                }
+            }
+
+            async openCamera() {
+                this.elements.cameraError.classList.add('hidden');
+                try {
+                    if (this.stream) { 
+                        this.stream.getTracks().forEach(track => track.stop()); 
+                    }
+                    this.stream = await navigator.mediaDevices.getUserMedia({ 
+                        video: { facingMode: 'user' } 
+                    });
+                    this.elements.cameraModal.classList.remove('hidden');
+                    this.elements.cameraFeed.srcObject = this.stream;
+                    this.elements.cameraFeed.style.display = 'block';
+                    this.elements.cameraCanvas.style.display = 'none';
+                    this.elements.usePictureBtn.classList.add('hidden');
+                } catch (err) {
+                    console.error("Camera error:", err);
+                    this.elements.cameraError.classList.remove('hidden');
+                }
+            }
             
-            this.updateAllPreviews();
-            this.showFeedback('이전 작업 내용을 복원했습니다.');
+            takePicture() {
+                const canvas = this.elements.cameraCanvas;
+                const video = this.elements.cameraFeed;
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                video.style.display = 'none';
+                canvas.style.display = 'block';
+                this.elements.usePictureBtn.classList.remove('hidden');
+            }
+
+            useCapturedPicture() {
+                const optimizedImage = ImageProcessor.optimizeCameraImage(this.elements.cameraCanvas);
+                this.setCouponImage(optimizedImage);
+                this.closeCamera();
+                this.showFeedback('멋진 사진이 찍혔어요! 📸');
+            }
+            
+            closeCamera() {
+                if (this.stream) { 
+                    this.stream.getTracks().forEach(track => track.stop()); 
+                }
+                this.elements.cameraModal.classList.add('hidden');
+            }
+
+            waitForImages() {
+                const images = document.querySelectorAll('#capture-area img');
+                const promises = Array.from(images).map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve; // Continue even if an image fails to load
+                    });
+                });
+                return Promise.all(promises);
+            }
+
+            async downloadPDF() {
+                this.showFeedback('PDF 생성 중... 잠시만 기다려주세요.', true);
+                try {
+                    // 이미지가 모두 로드될 때까지 대기
+                    await this.waitForImages();
+                    
+                    // HTML2Canvas로 캡처
+                    const canvas = await html2canvas(document.getElementById('capture-area'), { 
+                        scale: 2, 
+                        useCORS: true, 
+                        backgroundColor: '#ffffff',
+                        logging: false
+                    });
+                    
+                    // PDF 생성
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                    
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save('나의_효도인증서.pdf');
+                    
+                    this.showFeedback('✅ PDF가 성공적으로 저장되었습니다!', true);
+                } catch (error) {
+                    console.error('PDF creation error:', error);
+                    this.showFeedback('⚠️ PDF 생성에 실패했습니다. 다시 시도해주세요.', false);
+                }
+            }
+
+            resetForm() {
+                if (confirm("정말로 모든 내용을 지우고 처음부터 다시 시작할까요?")) {
+                    this.elements.activityForm.reset();
+                    this.elements.couponImagePreview.innerHTML = '인증샷';
+                    
+                    // 쿠폰 항목을 1개만 남기고 모두 제거
+                    const container = this.elements.couponItemsContainer;
+                    while (container.children.length > 1) {
+                        container.removeChild(container.lastChild);
+                    }
+                    // 첫 번째 항목의 값도 초기화
+                    const firstInput = container.querySelector('.coupon-input');
+                    if (firstInput) firstInput.value = '';
+                    
+                    this.updateRemoveButtons();
+                    this.updateAllPreviews();
+                    localStorage.removeItem('filialPietyAppData');
+                    this.showFeedback('모든 내용이 초기화되었습니다.');
+                }
+            }
+
+            saveData() {
+                try {
+                    const thoughts = Array.from(this.elements.thoughtCheckboxes)
+                                        .filter(cb => cb.checked)
+                                        .map(cb => cb.value);
+                    const kingValue = document.querySelector('input[name="king"]:checked')?.value || '';
+                    const couponTitles = this.getCouponTitles();
+
+                    const data = {
+                        school: this.elements.schoolInput.value,
+                        classGrade: this.elements.classGradeInput.value,
+                        name: this.elements.nameInput.value,
+                        couponTitles: couponTitles,
+                        diaryDate: this.elements.diaryDate.value,
+                        diaryText: this.elements.diaryText.value,
+                        pledge: this.elements.pledgeInput.value,
+                        thoughts: thoughts,
+                        king: kingValue,
+                        // 이미지는 저장하지 않음 (보안 및 용량 문제)
+                    };
+                    localStorage.setItem('filialPietyAppData', JSON.stringify(data));
+                } catch (error) {
+                    console.warn('데이터 저장 실패:', error);
+                }
+            }
+
+            loadData() {
+                try {
+                    const data = JSON.parse(localStorage.getItem('filialPietyAppData') || '{}');
+                    if (Object.keys(data).length === 0) {
+                        this.updateAllPreviews();
+                        return;
+                    }
+                    
+                    this.elements.schoolInput.value = data.school || '';
+                    this.elements.classGradeInput.value = data.classGrade || '';
+                    this.elements.nameInput.value = data.name || '';
+                    this.elements.diaryDate.value = data.diaryDate || '';
+                    this.elements.diaryText.value = data.diaryText || '';
+                    this.elements.pledgeInput.value = data.pledge || '';
+                    
+                    // 쿠폰 제목들 복원
+                    if (data.couponTitles && Array.isArray(data.couponTitles)) {
+                        const container = this.elements.couponItemsContainer;
+                        // 기존 항목들 모두 제거
+                        container.innerHTML = '';
+                        
+                        // 저장된 항목들 복원 (최소 1개는 보장)
+                        const titlesToRestore = data.couponTitles.length > 0 ? data.couponTitles : [''];
+                        titlesToRestore.forEach((title, index) => {
+                            const newItem = document.createElement('div');
+                            newItem.className = 'coupon-item mb-3 p-3 border border-dashed border-rose-200 rounded-lg';
+                            newItem.innerHTML = `
+                                <div class="flex gap-2 items-center mb-2">
+                                    <input type="text" class="coupon-input flex-1 p-2 border rounded-md" value="${title}" placeholder="예: 설거지 도와드리기 (실천 완료!)">
+                                    <button type="button" class="remove-coupon-btn px-3 py-2 bg-red-500 text-white rounded-md text-sm">삭제</button>
+                                </div>
+                            `;
+                            container.appendChild(newItem);
+                        });
+                        this.updateRemoveButtons();
+                    } else if (data.couponTitle) {
+                        // 기존 단일 쿠폰 제목 호환성 유지
+                        const firstInput = this.elements.couponItemsContainer.querySelector('.coupon-input');
+                        if (firstInput) firstInput.value = data.couponTitle;
+                    }
+                    
+                    if (data.king) {
+                        const kingRadio = document.querySelector(`input[name="king"][value="${data.king}"]`);
+                        if (kingRadio) kingRadio.checked = true;
+                    }
+
+                    this.elements.thoughtCheckboxes.forEach(cb => {
+                        if (data.thoughts?.includes(cb.value)) {
+                            cb.checked = true;
+                        }
+                    });
+                    
+                    this.updateAllPreviews();
+                    this.showFeedback('이전 작업 내용을 복원했습니다.');
+                } catch (error) {
+                    console.warn('데이터 로드 실패:', error);
+                    this.updateAllPreviews();
+                }
+            }
+
+            showFeedback(message, isSuccess = true) {
+                const toast = document.createElement('div');
+                toast.textContent = message;
+                toast.className = 'feedback-toast';
+                toast.style.backgroundColor = isSuccess ? '#28a745' : '#dc3545';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => { toast.style.opacity = '1'; }, 10);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => { 
+                        if (toast.parentNode) {
+                            toast.remove(); 
+                        }
+                    }, 500);
+                }, 3000);
+            }
         }
 
-        showFeedback(message, isSuccess = true) {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.className = 'feedback-toast';
-            toast.style.backgroundColor = isSuccess ? '#28a745' : '#dc3545';
-            document.body.appendChild(toast);
-            setTimeout(() => { toast.style.opacity = '1'; }, 10);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => { toast.remove(); }, 500);
-            }, 3000);
+        // 앱 초기화
+        try {
+            new FilialPietyCouponApp();
+        } catch (error) {
+            console.error('앱 초기화 오류:', error);
+            alert('애플리케이션 로딩 중 오류가 발생했습니다. 페이지를 새로고침해주세요.');
         }
-    }
-
-    // Initialize the app
-    new FilialPietyCouponApp();
-});
+    });
     </script>
 </body>
 </html>
